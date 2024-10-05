@@ -1,7 +1,14 @@
 <script lang="ts">
+	import { mdastDirectiveComponents } from '$lib/index.js';
+	import { Unist } from '@accuser/svelte-unist';
 	import type { PageData } from './$types.js';
+	import Highlight from './Highlight.svelte';
 
-	const { data }: { data: PageData } = $props();
+	let { data }: { data: PageData } = $props();
 
-	const { ast } = $derived(data);
+	let { ast } = $derived(data);
+
+	let components = { ...mdastDirectiveComponents, hl: Highlight };
 </script>
+
+<Unist {ast} {components} />

@@ -4,9 +4,11 @@
 
 	let { children, name, ...props }: LeafDirective = $props();
 
-	const { components } = getUnistContext();
+	const { components = {} } = getUnistContext();
 
-	let Component = $derived(components[name] as import('svelte').Component<LeafDirective>);
+	let Component = $derived(
+		components[name as keyof typeof components] as import('svelte').Component<LeafDirective>
+	);
 </script>
 
 {#if Component}

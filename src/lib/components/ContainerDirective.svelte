@@ -4,9 +4,11 @@
 
 	let { children, name, ...props }: ContainerDirective = $props();
 
-	const { components } = getUnistContext();
+	const { components = {} } = getUnistContext();
 
-	let Component = $derived(components[name] as import('svelte').Component<ContainerDirective>);
+	let Component = $derived(
+		components[name as keyof typeof components] as import('svelte').Component<ContainerDirective>
+	);
 </script>
 
 {#if Component}

@@ -51,7 +51,8 @@
 	"dependencies": {
 		"@accuser/svelte-unist": "^0.5.0",
 		"@types/unist": "^3.0.3",
-		"mdast-util-directive": "^3.0.0"
+		"mdast-util-directive": "^3.0.0",
+		"micromark-extension-directive": "^3.0.2"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.5",

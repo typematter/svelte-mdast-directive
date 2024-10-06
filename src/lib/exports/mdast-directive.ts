@@ -1,7 +1,9 @@
 import ContainerDirective from '$lib/components/ContainerDirective.svelte';
 import LeafDirective from '$lib/components/LeafDirective.svelte';
 import TextDirective from '$lib/components/TextDirective.svelte';
-import type { Components } from '@accuser/svelte-unist';
+import type { Components, Directives } from '@accuser/svelte-unist';
+import { directiveFromMarkdown } from 'mdast-util-directive';
+import { directive } from 'micromark-extension-directive';
 
 declare module '@accuser/svelte-unist' {
 	export type AllDirectives = DirectiveMap[keyof DirectiveMap];
@@ -27,8 +29,14 @@ declare module '@accuser/svelte-unist' {
 	}
 }
 
-export default {
+export const components: Components = {
 	containerDirective: ContainerDirective,
 	leafDirective: LeafDirective,
 	textDirective: TextDirective
-} satisfies Components;
+};
+
+export const directives: Directives = {};
+
+export const extensions = [directive()];
+
+export const mdastExtensions = [directiveFromMarkdown()];

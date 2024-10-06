@@ -1,1 +1,1 @@
-export { default as mdastDirectiveComponents } from './defaults/mdast-directive-components.js';
+export * as mdastDirective from './exports/mdast-directive.js';

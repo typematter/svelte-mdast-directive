@@ -1,3 +1,4 @@
+import type { Components, Directives } from '@accuser/svelte-unist';
 declare module '@accuser/svelte-unist' {
     type AllDirectives = DirectiveMap[keyof DirectiveMap];
     interface ComponentMap {
@@ -19,9 +20,7 @@ declare module '@accuser/svelte-unist' {
         directives?: Directives;
     }
 }
-declare const _default: {
-    containerDirective: import("svelte").Component<import("mdast-util-directive").ContainerDirective, {}, "">;
-    leafDirective: import("svelte").Component<import("mdast-util-directive").LeafDirective, {}, "">;
-    textDirective: import("svelte").Component<import("mdast-util-directive").TextDirective, {}, "">;
-};
-export default _default;
+export declare const components: Components;
+export declare const directives: Directives;
+export declare const extensions: import('micromark-util-types').Extension[];
+export declare const mdastExtensions: (import('mdast-util-from-markdown').Extension | import('mdast-util-from-markdown').Extension[])[];

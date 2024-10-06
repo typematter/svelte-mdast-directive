@@ -37,6 +37,9 @@ export const components: Components = {
 
 export const directives: Directives = {};
 
-export const extensions = [directive()];
+export const extensions: import('micromark-util-types').Extension[] = [directive()];
 
-export const mdastExtensions = [directiveFromMarkdown()];
+export const mdastExtensions: (
+	| import('mdast-util-from-markdown').Extension
+	| import('mdast-util-from-markdown').Extension[]
+)[] = [directiveFromMarkdown()];

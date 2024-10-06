@@ -4,10 +4,10 @@
 
 	let { children, name, ...props }: TextDirective = $props();
 
-	const { components = {} } = getUnistContext();
+	const { directives = {} } = getUnistContext();
 
 	let Component = $derived(
-		components[name as keyof typeof components] as import('svelte').Component<TextDirective>
+		directives[name as keyof typeof directives] as import('svelte').Component<TextDirective>
 	);
 </script>
 

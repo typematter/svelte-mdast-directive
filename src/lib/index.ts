@@ -1,1 +1,1 @@
-export * as mdastDirective from './exports/mdast-directive.js';
+export * from './components/index.js';

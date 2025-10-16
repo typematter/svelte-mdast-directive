@@ -1,53 +1,80 @@
-# Svelte Markdown Provider
+# Svelte Mdast Directive
 
-Transforms Markdown source (as a `string`) or a [Markdown AST](https://github.com/syntax-tree/mdast) into Svelte components.
-
-> [!NOTE]
-> You probably don't want this - look at [mdsvex](https://mdsvex.pngwn.io) or [svelte-markdown](https://github.com/pablo-abc/svelte-markdown) instead.
+Transform [Mdast](https://github.com/syntax-tree/mdast) directive nodes into Svelte components.
 
 ## Installing
 
-Add the `@accuser/svelte-markdown-provider` package dependency to your [Svelte](https://svelte.dev) / [SvelteKit](https://kit.svelte.dev) project:
+Add the `@accuser/svelte-mdast-directive` package dependency to your [Svelte](https://svelte.dev) / [SvelteKit](https://kit.svelte.dev) project:
 
 ```sh
-npm install --save-dev @accuser/svelte-markdown-provider
+npm install --save-dev @accuser/svelte-mdast-directive
+
+# or
+yarn add -D @accuser/svelte-mdast-directive
+
+# or
+pnpm add -D @accuser/svelte-mdast-directive
 ```
 
 ## Usage
 
-### Markdown `string`
-
 ```svelte
-<script>
-	import { Markdown } from '@accuser/svelte-markdown-provider';
+<script lang="ts">
+	import { components } from '@accuser/svelte-mdast-directive';
+	import { Unist } from '@accuser/svelte-unist';
+	import { u } from 'unist-builder';
+	import Highlight from './Highlight.svelte';
 
-	const source = 'Hello, World!';
+	const ast: import('mdast').Root = u('root', [
+		u('textDirective', { name: 'highlight' }, [u('text', 'Hello, World!')])
+	]);
 </script>
 
-<Markdown {src} />
+<Unist {ast} {components} textDirectives={{ highlight: Highlight }} />
 ```
 
-### Markdown AST
+### Custom Directive Component
+
+Create a custom component for your directive:
 
 ```svelte
-<script>
-	import { Markdown } from '@accuser/svelte-markdown-provider';
+<!-- Highlight.svelte -->
+<script lang="ts">
+	import { Node } from '@accuser/svelte-unist';
 
-	const ast = {
-		type: 'root',
-		children: [
-			{
-				type: 'paragraph',
-				children: [
-					{
-						type: 'text',
-						value: 'Hello, World!'
-					}
-				]
-			}
-		]
-	};
+	let { node }: { node: import('mdast-util-directive').TextDirective } = $props();
+
+	let { children } = $derived(node);
 </script>
 
-<Markdown {ast} />
+<span style="background-color: yellow;">
+	{#each children as child (child)}<Node node={child} />{/each}
+</span>
 ```
+
+### Directive Types
+
+This library supports three directive types from the [directive syntax specification](https://talk.commonmark.org/t/generic-directives-plugins-syntax/444):
+
+- **Text directives**: `:name[content]` - inline directives
+- **Leaf directives**: `::name[content]` - block-level directives without children
+- **Container directives**: `:::name` - block-level directives that can contain other content
+
+Pass custom components via the corresponding props:
+- `textDirectives={{ name: Component }}`
+- `leafDirectives={{ name: Component }}`
+- `containerDirectives={{ name: Component }}`
+
+## Test
+
+```sh
+pnpm test
+```
+
+## License
+
+[MIT](LICENSE)
+
+## Copyright
+
+Copyright &copy; 2024 [Matthew Gibbons](https://github.com/accuser)

@@ -1,5 +1,5 @@
 {
-	"name": "@accuser/svelte-mdast-directive",
+	"name": "@typematter/svelte-mdast-directive",
 	"version": "0.3.2",
 	"private": false,
 	"license": "MIT",
@@ -14,13 +14,13 @@
 		"svelte",
 		"sveltekit"
 	],
-	"homepage": "https://github.com/accuser/svelte-mdast-directive",
+	"homepage": "https://github.com/typematter/svelte-mdast-directive",
 	"bugs": {
-		"url": "https://github.com/accuser/svelte-mdast-directive/issues"
+		"url": "https://github.com/typematter/svelte-mdast-directive/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/accuser/svelte-mdast-directive.git"
+		"url": "git+https://github.com/typematter/svelte-mdast-directive.git"
 	},
 	"scripts": {
 		"dev": "vite dev",

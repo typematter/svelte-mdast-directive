@@ -4,23 +4,23 @@ Transform [Mdast](https://github.com/syntax-tree/mdast) directive nodes into Sve
 
 ## Installing
 
-Add the `@accuser/svelte-mdast-directive` package dependency to your [Svelte](https://svelte.dev) / [SvelteKit](https://kit.svelte.dev) project:
+Add the `@typematter/svelte-mdast-directive` package dependency to your [Svelte](https://svelte.dev) / [SvelteKit](https://kit.svelte.dev) project:
 
 ```sh
-npm install --save-dev @accuser/svelte-mdast-directive
+npm install --save-dev @typematter/svelte-mdast-directive
 
 # or
-yarn add -D @accuser/svelte-mdast-directive
+yarn add -D @typematter/svelte-mdast-directive
 
 # or
-pnpm add -D @accuser/svelte-mdast-directive
+pnpm add -D @typematter/svelte-mdast-directive
 ```
 
 ## Usage
 
 ```svelte
 <script lang="ts">
-	import { components } from '@accuser/svelte-mdast-directive';
+	import { components } from '@typematter/svelte-mdast-directive';
 	import { Unist } from '@typematter/svelte-unist';
 	import { u } from 'unist-builder';
 	import Highlight from './Highlight.svelte';

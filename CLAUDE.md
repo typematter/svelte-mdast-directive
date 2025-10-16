@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-`@accuser/svelte-mdast-directive` is a SvelteKit library that provides Svelte components for rendering [mdast](https://github.com/syntax-tree/mdast) directive nodes. It integrates with `@typematter/svelte-unist` to enable custom directive handling in markdown processing.
+`@typematter/svelte-mdast-directive` is a SvelteKit library that provides Svelte components for rendering [mdast](https://github.com/syntax-tree/mdast) directive nodes. It integrates with `@typematter/svelte-unist` to enable custom directive handling in markdown processing.
 
 The library supports three directive types from the [directive syntax specification](https://talk.commonmark.org/t/generic-directives-plugins-syntax/444):
 
@@ -16,7 +16,7 @@ The library supports three directive types from the [directive syntax specificat
 
 ```svelte
 <script lang="ts">
-	import { components } from '@accuser/svelte-mdast-directive';
+	import { components } from '@typematter/svelte-mdast-directive';
 	import { Unist } from '@typematter/svelte-unist';
 	import { u } from 'unist-builder';
 	import Highlight from './Highlight.svelte';
@@ -79,7 +79,7 @@ Consumers extend the map interfaces in their projects to register custom directi
 
 ```typescript
 // Consumer code
-declare module '@accuser/svelte-mdast-directive' {
+declare module '@typematter/svelte-mdast-directive' {
 	interface ContainerDirectiveMap {
 		note: ContainerDirective & { name: 'note' };
 	}

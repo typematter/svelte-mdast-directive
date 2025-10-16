@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@typematter/svelte-unist':
+        specifier: ^1.0.4
+        version: 1.0.4(@types/unist@3.0.3)(svelte@5.39.11)
       '@types/unist':
         specifier: ^3.0.3
         version: 3.0.3
@@ -24,9 +27,6 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
     devDependencies:
-      '@accuser/svelte-unist':
-        specifier: github:accuser/svelte-unist
-        version: https://codeload.github.com/accuser/svelte-unist/tar.gz/cc6182de6a3a66e0d024a393daff4b5bb14e808a(@types/unist@3.0.3)(svelte@5.39.11)
       '@eslint/compat':
         specifier: ^1.4.0
         version: 1.4.0(eslint@9.37.0(jiti@2.3.1))
@@ -110,12 +110,6 @@ importers:
         version: 3.2.4(@types/debug@4.1.12)(@types/node@24.7.2)(jiti@2.3.1)(jsdom@27.0.0(postcss@8.5.6))
 
 packages:
-
-  '@accuser/svelte-unist@https://codeload.github.com/accuser/svelte-unist/tar.gz/cc6182de6a3a66e0d024a393daff4b5bb14e808a':
-    resolution: {tarball: https://codeload.github.com/accuser/svelte-unist/tar.gz/cc6182de6a3a66e0d024a393daff4b5bb14e808a}
-    version: 0.5.0
-    peerDependencies:
-      svelte: ^5.39.11
 
   '@accuser/unist-util-type-guards@1.1.0':
     resolution: {integrity: sha512-yt3kSD1iuzWPHg+lQAxGJX5yAsNUaYJeGSPWS9VwRKEIgVAWMwa/bLuWdFc8ZstZZaMT9w3GiErQ0AdrtNrOwg==}
@@ -583,6 +577,11 @@ packages:
   '@testing-library/jest-dom@6.9.1':
     resolution: {integrity: sha512-zIcONa+hVtVSSep9UT3jZ5rizo2BsxgyDYU7WFD5eICBE7no3881HGeb/QkGfsJs6JTkY1aQhT7rIPC7e+0nnA==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
+
+  '@typematter/svelte-unist@1.0.4':
+    resolution: {integrity: sha512-LDoGvnNQQs0F1KVpFwDemGlZxA/pyI4UCwjlGpG07ysBEDDSpwZNmfPI2pSbNDyjiCJrDN291K9/KQ4Prolw5A==}
+    peerDependencies:
+      svelte: ^5.39.11
 
   '@types/chai@5.2.2':
     resolution: {integrity: sha512-8kB30R7Hwqf40JPiKhVzodJs2Qc1ZJ5zuT3uzw5Hq/dhNCl3G3l83jfpdI1e20BP348+fV7VIL/+FxaXkqBmWg==}
@@ -1783,13 +1782,6 @@ packages:
 
 snapshots:
 
-  '@accuser/svelte-unist@https://codeload.github.com/accuser/svelte-unist/tar.gz/cc6182de6a3a66e0d024a393daff4b5bb14e808a(@types/unist@3.0.3)(svelte@5.39.11)':
-    dependencies:
-      '@accuser/unist-util-type-guards': 1.1.0(@types/unist@3.0.3)
-      svelte: 5.39.11
-    transitivePeerDependencies:
-      - '@types/unist'
-
   '@accuser/unist-util-type-guards@1.1.0(@types/unist@3.0.3)':
     dependencies:
       '@types/unist': 3.0.3
@@ -2149,6 +2141,13 @@ snapshots:
       dom-accessibility-api: 0.6.3
       picocolors: 1.1.1
       redent: 3.0.0
+
+  '@typematter/svelte-unist@1.0.4(@types/unist@3.0.3)(svelte@5.39.11)':
+    dependencies:
+      '@accuser/unist-util-type-guards': 1.1.0(@types/unist@3.0.3)
+      svelte: 5.39.11
+    transitivePeerDependencies:
+      - '@types/unist'
 
   '@types/chai@5.2.2':
     dependencies:

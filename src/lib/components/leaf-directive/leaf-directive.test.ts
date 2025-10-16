@@ -1,4 +1,6 @@
+import { Unist } from '@accuser/svelte-unist';
 import { mount, type ComponentProps } from 'svelte';
+import { u } from 'unist-builder';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import LeafDirective from './leaf-directive.svelte';
 
@@ -8,40 +10,31 @@ vi.mock('@accuser/svelte-unist', async () => {
 	return {
 		...actual,
 		getUnistContext: vi.fn().mockReturnValue({
-			components: {}
+			leafDirectives: {}
 		})
 	};
 });
 
-describe('LeafDirective.svelte', () => {
+describe('LeafDirective', () => {
 	beforeEach(() => {
 		document.body = document.createElement('body');
 	});
 
-	const it = test.extend<{ props: ComponentProps<typeof LeafDirective> }>({
+	const it = test.extend<{ props: ComponentProps<typeof Unist> }>({
 		props: {
-			node: {
-				type: 'leafDirective',
-				name: 'leaf',
-				children: []
-			}
+			ast: u('leafDirective', { name: 'leaf' }, []),
+			components: { leafDirective: LeafDirective }
 		}
 	});
 
-	it('renders an HTML comment', ({ props }) => {
-		mount(LeafDirective, { props, target: document.body });
-
-		expect(document.body.innerHTML).toContain('<!-- Unrecognized leaf directive ::leaf -->');
-	});
-
 	it('renders <div>', ({ props }) => {
-		mount(LeafDirective, { props, target: document.body });
+		mount(Unist, { props, target: document.body });
 
 		expect(document.body.querySelector('div')).toBeInTheDocument();
 	});
 
 	it('renders <div> with `class` attribute', ({ props }) => {
-		mount(LeafDirective, { props, target: document.body });
+		mount(Unist, { props, target: document.body });
 
 		expect(document.body.querySelector('div.leaf')).toBeInTheDocument();
 	});

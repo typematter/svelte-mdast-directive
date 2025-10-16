@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-`@accuser/svelte-mdast-directive` is a SvelteKit library that provides Svelte components for rendering [mdast](https://github.com/syntax-tree/mdast) directive nodes. It integrates with `@accuser/svelte-unist` to enable custom directive handling in markdown processing.
+`@accuser/svelte-mdast-directive` is a SvelteKit library that provides Svelte components for rendering [mdast](https://github.com/syntax-tree/mdast) directive nodes. It integrates with `@typematter/svelte-unist` to enable custom directive handling in markdown processing.
 
 The library supports three directive types from the [directive syntax specification](https://talk.commonmark.org/t/generic-directives-plugins-syntax/444):
+
 - **Text directives**: `:name[content]` - inline directives
 - **Leaf directives**: `::name[content]` - block-level directives without children
 - **Container directives**: `:::name` - block-level directives that can contain other content
@@ -16,13 +17,11 @@ The library supports three directive types from the [directive syntax specificat
 ```svelte
 <script lang="ts">
 	import { components } from '@accuser/svelte-mdast-directive';
-	import { Unist } from '@accuser/svelte-unist';
+	import { Unist } from '@typematter/svelte-unist';
 	import { u } from 'unist-builder';
 	import Highlight from './Highlight.svelte';
 
-	const ast = u('root', [
-		u('textDirective', { name: 'highlight' }, [u('text', 'Hello, World!')])
-	]);
+	const ast = u('root', [u('textDirective', { name: 'highlight' }, [u('text', 'Hello, World!')])]);
 </script>
 
 <Unist {ast} {components} textDirectives={{ highlight: Highlight }} />
@@ -60,6 +59,7 @@ pnpm format          # Format with prettier
 ### Running a Single Test
 
 Use Vitest's filtering:
+
 ```bash
 pnpm test container-directive    # Run tests matching "container-directive"
 pnpm test -t "renders <div>"     # Run specific test by name
@@ -80,13 +80,14 @@ Consumers extend the map interfaces in their projects to register custom directi
 ```typescript
 // Consumer code
 declare module '@accuser/svelte-mdast-directive' {
-  interface ContainerDirectiveMap {
-    note: ContainerDirective & { name: 'note' };
-  }
+	interface ContainerDirectiveMap {
+		note: ContainerDirective & { name: 'note' };
+	}
 }
 ```
 
 This pattern enables:
+
 - Type-safe directive name checking
 - Autocomplete for directive names
 - Compile-time verification of registered directives
@@ -94,32 +95,38 @@ This pattern enables:
 ### Component Structure
 
 Each directive type follows identical structure in `src/lib/components/{type}-directive/`:
+
 - `{type}-directive.svelte` - Main component that resolves and renders custom directive components
 - `{type}-directive-map.ts` - Empty interface for module augmentation
 - `{type}-directives.ts` - Type that maps directive names to Svelte components
 - `{type}-directive.test.ts` - Component tests using Vitest
 - `index.ts` - Re-exports
 
-### Integration with @accuser/svelte-unist
+### Integration with @typematter/svelte-unist
 
-The components rely on context from `@accuser/svelte-unist`:
+The components rely on context from `@typematter/svelte-unist`:
+
 - `getUnistContext()` retrieves directive registrations (e.g., `containerDirectives`, `leafDirectives`, `textDirectives`)
 - `<Node>` component recursively renders child nodes
-- The `components` export satisfies the `@accuser/svelte-unist` Components interface
+- The `components` export satisfies the `@typematter/svelte-unist` Components interface
 
 ### Test Patterns
 
 Tests use Vitest with:
-- `vi.mock()` to mock `@accuser/svelte-unist` context
+
+- `vi.mock()` to mock `@typematter/svelte-unist` context
 - `mount()` from Svelte for component mounting
 - `@testing-library/jest-dom` for DOM assertions
 - `unist-builder` (`u()`) for creating AST nodes
 
 Example test structure:
+
 ```typescript
-vi.mock('@accuser/svelte-unist', async () => ({
-  ...await vi.importActual('@accuser/svelte-unist'),
-  getUnistContext: vi.fn().mockReturnValue({ /* mock context */ })
+vi.mock('@typematter/svelte-unist', async () => ({
+	...(await vi.importActual('@typematter/svelte-unist')),
+	getUnistContext: vi.fn().mockReturnValue({
+		/* mock context */
+	})
 }));
 ```
 

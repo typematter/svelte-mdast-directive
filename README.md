@@ -19,9 +19,9 @@ npm install --save-dev @accuser/svelte-markdown-provider
 
 ```svelte
 <script>
-    import { Markdown } from '@accuser/svelte-markdown-provider';
+	import { Markdown } from '@accuser/svelte-markdown-provider';
 
-    const source = 'Hello, World!';
+	const source = 'Hello, World!';
 </script>
 
 <Markdown {src} />
@@ -31,18 +31,22 @@ npm install --save-dev @accuser/svelte-markdown-provider
 
 ```svelte
 <script>
-    import { Markdown } from '@accuser/svelte-markdown-provider';
+	import { Markdown } from '@accuser/svelte-markdown-provider';
 
-    const ast = {
-        type: 'root',
-        children: [{
-           type: 'paragraph',
-           children: [{
-                type: 'text',
-                value: 'Hello, World!'
-            }]
-        }]
-    };
+	const ast = {
+		type: 'root',
+		children: [
+			{
+				type: 'paragraph',
+				children: [
+					{
+						type: 'text',
+						value: 'Hello, World!'
+					}
+				]
+			}
+		]
+	};
 </script>
 
 <Markdown {ast} />

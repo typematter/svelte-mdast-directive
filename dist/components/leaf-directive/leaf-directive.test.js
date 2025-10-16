@@ -1,10 +1,10 @@
-import { Unist } from '@accuser/svelte-unist';
+import { Unist } from '@typematter/svelte-unist';
 import { mount } from 'svelte';
 import { u } from 'unist-builder';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import LeafDirective from './leaf-directive.svelte';
-vi.mock('@accuser/svelte-unist', async () => {
-    const actual = await vi.importActual('@accuser/svelte-unist');
+vi.mock('@typematter/svelte-unist', async () => {
+    const actual = await vi.importActual('@typematter/svelte-unist');
     return {
         ...actual,
         getUnistContext: vi.fn().mockReturnValue({

@@ -1,5 +1,5 @@
 import type { ContainerDirectives } from './container-directives.js';
-declare module '@accuser/svelte-unist' {
+declare module '@typematter/svelte-unist' {
     interface ComponentMap {
         containerDirective: import('mdast-util-directive').ContainerDirective;
     }

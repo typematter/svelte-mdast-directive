@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getUnistContext, Node } from '@accuser/svelte-unist';
+	import { getUnistContext, Node } from '@typematter/svelte-unist';
 	import type { TextDirectives } from './text-directives.js';
 
 	let { node }: { node: import('mdast-util-directive').TextDirective } = $props();

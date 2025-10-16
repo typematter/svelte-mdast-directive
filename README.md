@@ -21,7 +21,7 @@ pnpm add -D @accuser/svelte-mdast-directive
 ```svelte
 <script lang="ts">
 	import { components } from '@accuser/svelte-mdast-directive';
-	import { Unist } from '@accuser/svelte-unist';
+	import { Unist } from '@typematter/svelte-unist';
 	import { u } from 'unist-builder';
 	import Highlight from './Highlight.svelte';
 
@@ -40,7 +40,7 @@ Create a custom component for your directive:
 ```svelte
 <!-- Highlight.svelte -->
 <script lang="ts">
-	import { Node } from '@accuser/svelte-unist';
+	import { Node } from '@typematter/svelte-unist';
 
 	let { node }: { node: import('mdast-util-directive').TextDirective } = $props();
 
@@ -61,6 +61,7 @@ This library supports three directive types from the [directive syntax specifica
 - **Container directives**: `:::name` - block-level directives that can contain other content
 
 Pass custom components via the corresponding props:
+
 - `textDirectives={{ name: Component }}`
 - `leafDirectives={{ name: Component }}`
 - `containerDirectives={{ name: Component }}`

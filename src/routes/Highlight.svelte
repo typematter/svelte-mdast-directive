@@ -6,6 +6,6 @@
 	let { children } = $derived(node);
 </script>
 
-<span style="text-transform: uppercase;"
-	>{#each children as child}<Node node={child} />{/each}</span
+<span style="background-color: yellow;"
+	>{#each children as child (child)}<Node node={child} />{/each}</span
 >

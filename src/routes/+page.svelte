@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as MdastUtilDirective from '$lib/components/index.js';
+	import { components } from '$lib/index.js';
 	import { Unist } from '@accuser/svelte-unist';
 	import { u } from 'unist-builder';
-	import Shouty from './Shouty.svelte';
+	import Highlight from './Highlight.svelte';
 
-	const ast = u('root', [u('textDirective', { name: 'shouty' }, [u('text', 'Hello, world!')])]);
+	const ast = u('root', [u('textDirective', { name: 'highlight' }, [u('text', 'Hello, World!')])]);
 </script>
 
-<Unist {ast} components={MdastUtilDirective.components} textDirectives={{ shouty: Shouty }} />
+<Unist {ast} {components} textDirectives={{ highlight: Highlight }} />

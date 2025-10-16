@@ -6,7 +6,7 @@ export const components = {
 	containerDirective: ContainerDirective,
 	leafDirective: LeafDirective,
 	textDirective: TextDirective
-} satisfies import('@accuser/svelte-unist').Components;
+} satisfies import('@typematter/svelte-unist').Components;
 
 export * from './container-directive/index.js';
 export * from './leaf-directive/index.js';

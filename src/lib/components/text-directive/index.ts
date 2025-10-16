@@ -1,6 +1,6 @@
 import type { TextDirectives } from './text-directives.js';
 
-declare module '@accuser/svelte-unist' {
+declare module '@typematter/svelte-unist' {
 	interface ComponentMap {
 		textDirective: import('mdast-util-directive').TextDirective;
 	}

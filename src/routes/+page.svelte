@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { components } from '$lib/index.js';
-	import { Unist } from '@accuser/svelte-unist';
+	import { Unist } from '@typematter/svelte-unist';
 	import { u } from 'unist-builder';
 	import Highlight from './Highlight.svelte';
 

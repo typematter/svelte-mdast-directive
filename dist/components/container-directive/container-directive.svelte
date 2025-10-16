@@ -16,8 +16,8 @@
 {#if Component}
 	<Component {node} />
 {:else}
-	{@html `<!-- Unrecognized container directive :::${node.name} -->`}
+	{console.warn(`Unist.Node: unrecognized container directive :::${node.name}`)}
 	<div class={node.name}>
-		{#each node.children as child}<Node node={child} />{/each}
+		{#each node.children as child (child)}<Node node={child} />{/each}
 	</div>
 {/if}

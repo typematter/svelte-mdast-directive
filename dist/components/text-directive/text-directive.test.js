@@ -1,4 +1,6 @@
+import { Unist } from '@accuser/svelte-unist';
 import { mount } from 'svelte';
+import { u } from 'unist-builder';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import TextDirective from './text-directive.svelte';
 vi.mock('@accuser/svelte-unist', async () => {
@@ -6,33 +8,26 @@ vi.mock('@accuser/svelte-unist', async () => {
     return {
         ...actual,
         getUnistContext: vi.fn().mockReturnValue({
-            components: {}
+            textDirectives: {}
         })
     };
 });
-describe('TextDirective.svelte', () => {
+describe('TextDirective', () => {
     beforeEach(() => {
         document.body = document.createElement('body');
     });
     const it = test.extend({
         props: {
-            node: {
-                type: 'textDirective',
-                name: 'text',
-                children: []
-            }
+            ast: u('textDirective', { name: 'text' }, []),
+            components: { textDirective: TextDirective }
         }
     });
-    it('renders an HTML comment', ({ props }) => {
-        mount(TextDirective, { props, target: document.body });
-        expect(document.body.innerHTML).toContain('<!-- Unrecognized text directive :text -->');
+    it('renders <div>', ({ props }) => {
+        mount(Unist, { props, target: document.body });
+        expect(document.body.querySelector('div')).toBeInTheDocument();
     });
-    it('renders <span>', ({ props }) => {
-        mount(TextDirective, { props, target: document.body });
-        expect(document.body.querySelector('span')).toBeInTheDocument();
-    });
-    it('renders <span> with `class` attribute', ({ props }) => {
-        mount(TextDirective, { props, target: document.body });
-        expect(document.body.querySelector('span.text')).toBeInTheDocument();
+    it('renders <div> with `class` attribute', ({ props }) => {
+        mount(Unist, { props, target: document.body });
+        expect(document.body.querySelector('div.text')).toBeInTheDocument();
     });
 });
